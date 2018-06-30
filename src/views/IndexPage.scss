@@ -1,0 +1,10 @@
+@import "../assets/scss/variables";
+@import "../assets/scss/base";
+@import "../assets/scss/mixin";
+
+.index-page-wrapper {
+  h1 {
+    margin: 5% 0 2% 0;
+    text-align: center;
+  }
+}

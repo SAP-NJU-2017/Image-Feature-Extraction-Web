@@ -1,0 +1,39 @@
+html, body, h1, h2, h3, h4, h5, h6, hr, li, ul, p, a, img, button {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-family: "Avenir", Helvetica, Arial, sans-serif;
+  font-weight: 300;
+  list-style: none; }
+
+html {
+  height: 100%; }
+
+* {
+  position: relative;
+  box-sizing: border-box; }
+
+button {
+  outline: none; }
+
+/*
+ * grid
+ */
+.wrapper .el-upload__tip {
+  text-align: center; }
+
+.upload-wrapper {
+  text-align: center; }
+  .upload-wrapper .el-upload {
+    cursor: pointer; }
+
+.result-wrapper {
+  text-align: center;
+  margin-top: 5%; }
+  .result-wrapper img {
+    width: 50%; }
+  .result-wrapper .error-area {
+    position: absolute;
+    border: 4px solid #409EFF; }
+
+/*# sourceMappingURL=UploadPicture.css.map */
