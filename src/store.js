@@ -16,10 +16,10 @@ export default new Vuex.Store({
         }
     },
     actions: {
-        fetchPicResult({commit}, {body}) {
+        fetchPicResult({commit}, {imageUrl}) {
             storeApi.fetchPicResult(data => {
                 commit('savePicResult', data)
-            }, body)
+            }, imageUrl)
         }
     }
 })

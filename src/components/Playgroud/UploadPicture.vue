@@ -23,14 +23,15 @@
             </div>
         </div>
 
-
         <div class="result-wrapper"
              v-loading="loading"
              :element-loading-text="text">
+
             <img v-if="imageUrl" :src="imageUrl">
             <img src="../../assets/img/bg.jpeg" v-else>
             <div class="error-area"
                  :style="{top: top + '%', left: left + '%', width: width + '%', height: height + '%', opacity: opacity}"></div>
+
         </div>
     </div>
 </template>
@@ -43,6 +44,7 @@
         data() {
             return {
                 imageUrl: '',
+                path: '',
                 uploadPicUrl: '/api/upload',
                 loading: false,
                 text: '',
@@ -60,12 +62,13 @@
             ]),
             handleAvatarSuccess(res, file) {
                 this.loading = true
-                this.text = 'Uploading...'
 
                 this.imageUrl = URL.createObjectURL(file.raw)
+                this.path = file.raw.name
                 this.$message.success('Successfully Upload!')
                 this.text = 'Extracting...'
                 this.disabled = true
+                this.opacity = 0
             },
             beforeAvatarUpload(file) {
                 const isJPG = file.type === 'image/jpeg' || file.type === 'image/jpg' || file.type === 'image/png';
@@ -88,17 +91,17 @@
         watch: {
             imageUrl: function () {
                 this.fetchPicResult({
-                        body: this.imageUrl
+                        imageUrl: this.path
                     }
                 )
             },
             picResult: function () {
                 this.$message.success('Successfully Extracted!')
                 this.opacity = 1
-                this.width = (this.picResult.endy - this.picResult.starty) / 100
-                this.height = (this.picResult.endx - this.picResult.startx) / 100
-                this.top = (this.picResult.starty) / 100
-                this.left = (this.picResult.startx) / 100
+                this.width = (this.picResult.endx - this.picResult.startx) * 100 / 2
+                this.height = (this.picResult.endy - this.picResult.starty) * 100
+                this.top = (this.picResult.starty) * 100
+                this.left = this.picResult.startx * 100 / 2 + 25
 
                 this.loading = false
                 this.disabled = false
